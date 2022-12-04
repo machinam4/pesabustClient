@@ -28,6 +28,7 @@ const ChatTab = () => {
       },
     });
     await socket.emit("chat_send");
+    setMessage("");
     refetch();
   };
   // setMessages(data.chats);
