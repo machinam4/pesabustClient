@@ -8,6 +8,7 @@ const ActionArea = () => {
   const [BetAmount, setBetAmount] = useState("");
   const [BetRate, setBetRate] = useState("");
   const betState = useSelector((state) => state.auth.isBet);
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const dispatch = useDispatch();
   const maximumBet = Number(3000);
   const accountBalance = Number(2000);
@@ -19,6 +20,9 @@ const ActionArea = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isAuth) {
+      return toast.error(`Login First`);
+    }
     if (
       BetAmount <= 11 ||
       BetAmount >= accountBalance ||
@@ -26,6 +30,7 @@ const ActionArea = () => {
     ) {
       return toast.error(`Invalid Bet Amount - ${BetAmount}`);
     }
+
     socket.emit(
       "bet_place",
       { amount: Number(BetAmount), rate: Number(BetRate) },
