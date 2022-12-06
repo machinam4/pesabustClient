@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 // apollo initialization
 const token = localStorage.getItem("Token");
 const client = new ApolloClient({
-  uri: process.env.REACT_APP_API_URL + "graphql",
+  uri: process.env.REACT_APP_API_URL + "vutapesa",
   headers: {
     authorization: token ? `Bearer ${token}` : "",
   },
