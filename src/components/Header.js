@@ -39,13 +39,31 @@ const Header = () => {
           <div className="flex justify-between">
             <div className="flex space-x-4">
               {/* <!-- logo --> */}
-              <div>
+              <div className="">
                 <img
                   src={logo}
                   alt={process.env.REACT_APP_NAME}
                   height="20"
-                  className="h-20"
+                  className="h-20 inline-block"
                 />
+                {/* <span> */}
+                <a href="tel:0793003346" className="inline-block items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48"
+                    height="48"
+                    // className="mt-4"
+                    viewBox="0 0 24 24"
+                    style={{
+                      fill: "rgba(6, 255, 0, 1)",
+                      transform: "",
+                      msFilter: "",
+                    }}
+                  >
+                    <path d="m20.487 17.14-4.065-3.696a1.001 1.001 0 0 0-1.391.043l-2.393 2.461c-.576-.11-1.734-.471-2.926-1.66-1.192-1.193-1.553-2.354-1.66-2.926l2.459-2.394a1 1 0 0 0 .043-1.391L6.859 3.513a1 1 0 0 0-1.391-.087l-2.17 1.861a1 1 0 0 0-.29.649c-.015.25-.301 6.172 4.291 10.766C11.305 20.707 16.323 21 17.705 21c.202 0 .326-.006.359-.008a.992.992 0 0 0 .648-.291l1.86-2.171a.997.997 0 0 0-.085-1.39z"></path>
+                  </svg>
+                </a>
+                {/* </span> */}
                 {/* <a
                   href="/"
                   className="flex items-center py-3 text-yellow hover:text-orange"
