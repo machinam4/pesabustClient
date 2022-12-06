@@ -51,7 +51,7 @@ function App() {
       </div>
       <div className="text-center text-xs text-white">
         Must be 18+ to register or play. Please gamble responsibly. Licensed and
-        authorised by BCLB under licence No. 0000438.
+        authorised by BCLB under licence No. 0002812.
       </div>
       <ToastContainer
         position="top-center"

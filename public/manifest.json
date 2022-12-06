@@ -1,6 +1,6 @@
 {
-  "short_name": "PesaBust",
-  "name": "The Ultimate Bust Game - We make winners",
+  "short_name": "Vutapesa",
+  "name": "The Ultimate Bust Game - Where winners are made",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "vutapesa_icon192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "vutapesa_icon512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
