@@ -65,7 +65,7 @@ const ChatTab = () => {
               }}
             />
             <button
-              className="w-16 hover:bg-orange focus:bg-yellow"
+              className="w-16 bg-orange hover:bg-yellow focus:bg-yellow"
               disabled={!isAuth}
             >
               Send

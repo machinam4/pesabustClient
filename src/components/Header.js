@@ -8,6 +8,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import { socket } from "../context/socket";
 import Faqs from "../pages/wallet/Faqs";
+import logo from "../vutapesa_logo.png";
 
 const Header = () => {
   const [WalletOpen, setWalletOpen] = useState(false);
@@ -39,7 +40,13 @@ const Header = () => {
             <div className="flex space-x-4">
               {/* <!-- logo --> */}
               <div>
-                <a
+                <img
+                  src={logo}
+                  alt={process.env.REACT_APP_NAME}
+                  height="20"
+                  className="h-20"
+                />
+                {/* <a
                   href="/"
                   className="flex items-center py-3 text-yellow hover:text-orange"
                 >
@@ -47,7 +54,7 @@ const Header = () => {
                     {" "}
                     VUTAPESA
                   </span>
-                </a>
+                </a> */}
               </div>
 
               {/* <!-- deposit button --> */}
@@ -90,7 +97,7 @@ const Header = () => {
                   </button>
                   <button
                     className="py-1 px-4 border border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
-                    onClick={() => setAccountOpen(true)}
+                    onClick={() => setWalletOpen(true)}
                   >
                     KSH. {userData.account.balance.toLocaleString()}
                   </button>
@@ -132,6 +139,22 @@ const Header = () => {
 
             {/* <!-- mobile button goes here -->  */}
             <div className="md:hidden flex items-center">
+              {!isAuth && (
+                <button
+                  onClick={() => setLoginOpen(true)}
+                  className="py-1 px-1 border border-purple m-2 rounded-md text-sm hover:bg-purple text-yellow hover:text-orange transition duration-300"
+                >
+                  LOGIN
+                </button>
+              )}
+              {isAuth && (
+                <button
+                  className="py-1 px-1 border border-purple m-2 rounded-md text-sm  hover:bg-purple text-yellow hover:text-orange transition duration-300"
+                  onClick={() => setWalletOpen(true)}
+                >
+                  KSH. {userData.account.balance.toLocaleString()}
+                </button>
+              )}
               <button
                 className="mobile-menu-button"
                 onClick={() => toggleMenu(true)}
@@ -161,7 +184,7 @@ const Header = () => {
             {isAuth && (
               <>
                 <button
-                  className="py-1 px-4 border-b-2 border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
+                  className="hidden py-1 px-4 border-b-2 border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
                   onClick={() => setWalletOpen(true)}
                 >
                   WALLET
@@ -182,7 +205,7 @@ const Header = () => {
                   {userData.username}
                 </button>
                 <button
-                  className="py-1 px-4 border border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
+                  className="hidden py-1 px-4 border border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
                   onClick={() => setAccountOpen(true)}
                 >
                   KSH. {userData.account.balance.toLocaleString()}
