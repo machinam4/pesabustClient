@@ -1,27 +1,19 @@
 import { useMutation } from "@apollo/client";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { authenticate, updateUser } from "../features/authSlice";
-import LoadingSpinner from "../components/LoadingSpinner";
-import { USER_LOGIN } from "../queries.js/gqlQueries";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import { USER_LOGIN } from "../../queries.js/gqlQueries";
 import { toast } from "react-toastify";
+import Modal from "../wallet/Modal";
+import PhoneInput from "./PhoneInput";
 
-const LoginPage = ({ onClose, socket }) => {
+const LoginPage = ({ onClose }) => {
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Password, setPassword] = useState("");
-  const dispatch = useDispatch();
+  const [ForgotPassword, setForgotPassword] = useState(false);
 
   // gql post method
   const [login, { loading, error }] = useMutation(USER_LOGIN);
-  useEffect(() => {
-    socket.emit("user_login", (data) => {
-      if (!data.isAuth) {
-        dispatch(authenticate(data.isAuth));
-      }
-      dispatch(updateUser(data.user));
-      dispatch(authenticate(data.isAuth));
-    });
-  });
+  useEffect(() => {});
 
   const validateForm = () => {
     if (!PhoneNumber.match("^254[17][0-9]{8}$")) {
@@ -43,9 +35,10 @@ const LoginPage = ({ onClose, socket }) => {
       },
     });
     const loggedIn = user.data.loginUser;
-    localStorage.setItem("Token", loggedIn.token);
+    await localStorage.setItem("Token", loggedIn.token);
     toast.success("Login Succesful");
-    onClose();
+    window.location.reload();
+    // onClose();
   };
 
   return (
@@ -94,7 +87,10 @@ const LoginPage = ({ onClose, socket }) => {
           >
             LOGIN
           </button>
-          <p className="mt-0 pt-0 text-right text-lg text-yellow">
+          <p
+            className="mt-0 pt-0 text-right text-lg text-yellow hover:cursor-pointer"
+            onClick={() => setForgotPassword(true)}
+          >
             Forgot Password?
           </p>
         </div>
@@ -104,6 +100,9 @@ const LoginPage = ({ onClose, socket }) => {
         read and agree to the{" "}
         <span className="text-yellow"> Terms of Service.</span>
       </p>
+      <Modal open={ForgotPassword} onClose={() => setForgotPassword()}>
+        <PhoneInput />
+      </Modal>
     </div>
   );
 };

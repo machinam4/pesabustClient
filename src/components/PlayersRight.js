@@ -1,28 +1,24 @@
-import { GET_PLAYERS } from "../queries.js/gqlQueries";
-import { useQuery } from "@apollo/client";
-import LoadingSpinner from "./LoadingSpinner";
-import { useEffect, useState } from "react";
-import { socket } from "../context/socket";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setisBet } from "../features/authSlice";
 
 const PlayersRight = () => {
-  const { loading, error, data, refetch } = useQuery(GET_PLAYERS);
-  const [OnlineUsers, setOnlineUsers] = useState();
-  const [Counter, setCounter] = useState();
+  const OnlineUsers = useSelector((state) => state.auth.onlineUsers);
+  const bets = useSelector((state) => state.auth.bets);
+  const BustRate = useSelector((state) => state.auth.bustRate);
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  const AuthUser = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    socket.on("users_online", (data) => {
-      setOnlineUsers(data);
-    });
-    socket.on("game_start", (res) => {
-      refetch();
-    });
-    socket.on("game_play", (data) => {
-      setCounter(data);
-    });
-  });
-  if (loading) return <LoadingSpinner />;
-  if (error)
-    return <p className="text-center text-red">Error : {error.message}</p>;
+  useEffect(() => {});
+  const checkbet = (user) => {
+    if (AuthUser._id === user._id) {
+      dispatch(setisBet(true));
+    } else {
+      dispatch(setisBet(false));
+    }
+  };
+
   return (
     <div>
       <div
@@ -40,15 +36,18 @@ const PlayersRight = () => {
               </tr>
             </thead>
             <tbody className="text-center text-white">
-              {data.bets.map(({ _id, amount, rate, user }) => (
+              {bets.map(({ _id, amount, rate, user }) => (
                 <tr
                   key={_id}
                   className={
-                    rate <= Counter
+                    rate <= BustRate[BustRate.length - 1]
                       ? "border-b text-green"
-                      : `border-b text-yellow ${rate < Counter && "hidden"}`
+                      : `border-b text-yellow ${
+                          rate < BustRate[BustRate.length - 1] && "hidden"
+                        }`
                   }
                 >
+                  {isAuth && checkbet(user)}
                   <td>{user.username}</td>
                   <td>{rate}</td>
                   <td>{amount}</td>
@@ -63,11 +62,7 @@ const PlayersRight = () => {
             Online: <span className="text-yellow-300">{OnlineUsers}</span>
           </div>
           <div className="text-white">
-            Playing:{" "}
-            <span className="text-yellow-300">
-              {" "}
-              {Object.keys(data.bets).length}
-            </span>
+            Playing: <span className="text-yellow-300"> {bets.length}</span>
           </div>
         </div>
       </div>

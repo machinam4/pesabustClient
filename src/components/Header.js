@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import Wallet from "../pages/wallet/Wallet";
 import Modal from "../pages/wallet/Modal";
 import Account from "../pages/Account";
-import Logout from "../pages/Logout";
-import LoginPage from "../pages/LoginPage";
-import RegisterPage from "../pages/RegisterPage";
 import { socket } from "../context/socket";
 import Faqs from "../pages/wallet/Faqs";
 import logo from "../vutapesa_logo.png";
+import Logout from "../pages/auth/Logout";
+import LoginPage from "../pages/auth/LoginPage";
+import RegisterPage from "../pages/auth/RegisterPage";
 
 const Header = () => {
   const [WalletOpen, setWalletOpen] = useState(false);
@@ -21,13 +21,6 @@ const Header = () => {
 
   const isAuth = useSelector((state) => state.auth.isAuth);
   const userData = useSelector((state) => state.auth.user);
-
-  useEffect(() => {
-    socket.emit("send_message", { data: "data" });
-    socket.on("game_start", (data) => {
-      // console.log(data);
-    });
-  });
 
   function toggleMenu() {
     setMenuOpen(!MenuOpen);
@@ -207,9 +200,9 @@ const Header = () => {
                 >
                   WALLET
                 </button>
-                <button className="py-1 px-4 border-b-2 border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300">
+                {/* <button className="py-1 px-4 border-b-2 border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300">
                   REFER TO EARN
-                </button>
+                </button> */}
                 <button
                   className="py-1 px-4 border-b-2 border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
                   onClick={() => setFAQSOpen(true)}

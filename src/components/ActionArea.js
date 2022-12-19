@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { socket } from "../context/socket";
 import { useDispatch, useSelector } from "react-redux";
-import { setisBet } from "../features/authSlice";
+import { authenticate, setisBet, updateUser } from "../features/authSlice";
 
 const ActionArea = () => {
   const [BetAmount, setBetAmount] = useState("");
@@ -13,8 +13,10 @@ const ActionArea = () => {
   const maximumBet = Number(3000);
   const accountBalance = Number(2000);
   useEffect(() => {
-    socket.on("game_end", (data) => {
-      dispatch(setisBet(false));
+    console.log("fetching");
+    socket.emit("user_login", (data) => {
+      dispatch(updateUser(data.user));
+      dispatch(authenticate(data.isAuth));
     });
   });
 

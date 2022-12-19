@@ -1,12 +1,18 @@
-import React from "react";
+import { useDispatch } from "react-redux";
+import { socket } from "../../context/socket";
+import { authenticate, updateUser } from "../../features/authSlice";
 
-const Logout = ({ onClose, socket }) => {
+const Logout = ({ onClose }) => {
+  const dispatch = useDispatch();
+
   const doLogout = () => {
     localStorage.removeItem("Token", "username");
     socket.user = false;
     socket.isAuth = false;
-    onClose();
-    return true;
+    dispatch(updateUser(socket.user));
+    dispatch(authenticate(socket.isAuth));
+    // onClose();
+    window.location.reload();
   };
 
   return (

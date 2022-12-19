@@ -16,6 +16,7 @@ const GET_PLAYERS = gql`
       amount
       rate
       user {
+        _id
         username
       }
     }
@@ -30,6 +31,32 @@ const GET_CHATS = gql`
       user {
         username
       }
+    }
+  }
+`;
+
+//password queries
+const SEND_PHONE = gql`
+  mutation sendPhone($phoneNumber: String!) {
+    getCode(phoneNumber: $phoneNumber) {
+      code
+      message
+    }
+  }
+`;
+const SEND_CODE = gql`
+  mutation sendCode($phoneNumber: String!, $code: String!) {
+    confirmCode(phoneNumber: $phoneNumber, code: $code) {
+      code
+      message
+    }
+  }
+`;
+const SEND_PASSWORD = gql`
+  mutation sendPassword($phoneNumber: String!, $password: String!) {
+    changePassword(phoneNumber: $phoneNumber, password: $password) {
+      code
+      message
     }
   }
 `;
@@ -83,6 +110,9 @@ export {
   GET_CHATS,
   USER_REGISTER,
   USER_LOGIN,
+  SEND_PHONE,
+  SEND_CODE,
+  SEND_PASSWORD,
   USER_CHAT,
   BET_PLACE,
 };

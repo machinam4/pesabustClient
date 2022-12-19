@@ -7,22 +7,27 @@ import TabArea from "./components/TabArea";
 import PlayersRight from "./components/PlayersRight";
 
 import BurstGraph from "./components/BurstGraph";
-import { useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { GET_PLAYERS } from "./queries.js/gqlQueries";
 import { useDispatch } from "react-redux";
-import { authenticate, updateUser } from "./features/authSlice";
-import { socket } from "./context/socket";
+import { updateBets } from "./features/authSlice";
+import { useEffect } from "react";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
+  const { loading, error, data } = useQuery(GET_PLAYERS);
   const dispatch = useDispatch();
+  // get initial bets data on page load using gql
   useEffect(() => {
-    socket.emit("user_login", (data) => {
-      if (!data.isAuth) {
-        dispatch(authenticate(data.isAuth));
-      }
-      dispatch(updateUser(data.user));
-      dispatch(authenticate(data.isAuth));
-    });
-  });
+    if (data) {
+      console.log("appdata");
+      dispatch(updateBets(data.bets));
+    }
+  }, [dispatch, data]);
+
+  if (loading) return <LoadingSpinner />;
+  if (error)
+    return <p className="text-center text-red-200">Error : {error.message}</p>;
 
   return (
     <div className="font-serif container mx-auto rounded-md bg-purple-light md:h-screen">

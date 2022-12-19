@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { authenticate, updateUser } from "../features/authSlice";
+import { authenticate, updateUser } from "../../features/authSlice";
 import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
-import { USER_REGISTER } from "../queries.js/gqlQueries";
-import LoadingSpinner from "../components/LoadingSpinner";
+import { USER_REGISTER } from "../../queries.js/gqlQueries";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const RegisterPage = ({ onClose, socket }) => {
   const [PhoneNumber, setPhoneNumber] = useState("");

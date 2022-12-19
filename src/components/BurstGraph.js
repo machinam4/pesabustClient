@@ -1,11 +1,12 @@
-import { useEffect, useState, useRef } from "react";
-import { socket } from "../context/socket";
+import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 
 const BurstGraph = () => {
   const canvasRef = useRef();
-  const [Counter, setCounter] = useState();
-  const [BustRate, setBustRate] = useState([]);
-  const [BustStatus, setBustStatus] = useState("loading");
+  const BustRate = useSelector((state) => state.auth.bustRate);
+  const BustStatus = useSelector((state) => state.auth.bustStatus);
+  const Counter = useSelector((state) => state.auth.counter);
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -39,24 +40,27 @@ const BurstGraph = () => {
 
     context.font = "bold 50px sans-serif";
     context.fillStyle = "#FFBF00";
-    context.fillText(`X${Counter}`, canvas.width / 3, 170);
-
-    // socket functions
-    socket.on("game_wait", (data) => {
-      setBustStatus("wait");
-      setCounter(data);
-    });
-    socket.on("game_play", (data) => {
-      setBustStatus("play");
-      BustRate.push(data);
-      setCounter(data);
-    });
-    socket.on("game_end", (data) => {
-      setBustStatus("end");
-      setBustRate([]);
-      setCounter(data);
-    });
+    context.fillText(
+      `X${BustRate[BustRate.length - 1]}`,
+      canvas.width / 3,
+      170
+    );
   });
+  // socket functions
+  // socket.on("game_wait", (data) => {
+  //   setBustStatus("wait");
+  //   setCounter(data);
+  // });
+  // socket.on("game_play", (data) => {
+  //   setBustStatus("play");
+  //   setCounter(data);
+  //   BustRate.push(data);
+  // });
+  // socket.on("game_end", (data) => {
+  //   setBustStatus("end");
+  //   setBustRate([]);
+  //   setCounter(data);
+  // });
 
   return (
     <div>
