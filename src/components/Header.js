@@ -42,7 +42,7 @@ const Header = () => {
                 {/* <span> */}
                 <a
                   href="tel:0793003346"
-                  className="inline-block items-center align-middle rotate-180 ml-10"
+                  className="inline-block items-center align-middle rotate-180 ml-2 md:ml-10"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +153,7 @@ const Header = () => {
                     LOGIN
                   </button>
                   <button
-                    className="py-1 px-1 border border-purple m-2 rounded-md text-xs hover:bg-purple text-yellow hover:text-orange transition duration-300"
+                    className="py-1 px-1 border border-purple ml-2 rounded-md text-xs hover:bg-purple text-yellow hover:text-orange transition duration-300"
                     onClick={() => setRegisterOpen(true)}
                   >
                     REGISTER
