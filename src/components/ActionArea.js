@@ -118,9 +118,9 @@ const ActionArea = () => {
       </form>
 
       {/* dsplay autcome predicted value */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="hidden grid grid-cols-6 gap-6">
         {/* input Amount */}
-        <div className="col-span-2"></div>
+        <div className="col-span-2">Stake : </div>
         <div className="col-span-2"></div>
       </div>
     </div>

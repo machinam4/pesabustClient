@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ActionArea from "./components/ActionArea";
 import TabArea from "./components/TabArea";
 import PlayersRight from "./components/PlayersRight";
-
+import logo from "./vutapesa_logo.png";
 import BurstGraph from "./components/BurstGraph";
 import { useQuery } from "@apollo/client";
 import { GET_PLAYERS } from "./queries.js/gqlQueries";
@@ -24,9 +24,24 @@ function App() {
       dispatch(updateBets(data.bets));
     }
   }, [dispatch, data]);
-  if (loading) return <LoadingSpinner />;
+  if (loading)
+    return (
+      <div class="flex items-center justify-center min-h-screen min-w-screen">
+        <img
+          src={logo}
+          alt={process.env.REACT_APP_NAME}
+          height=""
+          className="h-20 md:h-30"
+        />
+        <LoadingSpinner />
+      </div>
+    );
   if (error)
-    return <p className="text-center text-red-200">Error : {error.message}</p>;
+    return (
+      <p className="flex items-center justify-center min-h-screen min-w-screen text-center text-yellow">
+        Error : {error.message}
+      </p>
+    );
 
   return (
     <div className="font-serif container mx-auto rounded-md bg-purple-light md:h-screen">

@@ -168,7 +168,7 @@ const Header = () => {
                   KSH. {userData.account.balance.toLocaleString()}
                 </button>
               )}
-              {!isAuth && (
+              {isAuth && (
                 <button
                   className="mobile-menu-button"
                   onClick={() => toggleMenu(true)}

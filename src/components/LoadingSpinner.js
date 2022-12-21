@@ -5,7 +5,7 @@ const STYLES = {
 };
 const LoadingSpinner = () => {
   return (
-    <div className="flex justify-center content-center">
+    <div className="flex justify-center items-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="40"
