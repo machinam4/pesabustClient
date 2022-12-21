@@ -145,12 +145,20 @@ const Header = () => {
             {/* <!-- mobile button goes here -->  */}
             <div className="md:hidden flex items-center">
               {!isAuth && (
-                <button
-                  onClick={() => setLoginOpen(true)}
-                  className="py-1 px-1 border border-purple m-2 rounded-md text-sm hover:bg-purple text-yellow hover:text-orange transition duration-300"
-                >
-                  LOGIN
-                </button>
+                <>
+                  <button
+                    onClick={() => setLoginOpen(true)}
+                    className="py-1 px-1 border border-purple m-2 rounded-md text-sm hover:bg-purple text-yellow hover:text-orange transition duration-300"
+                  >
+                    LOGIN
+                  </button>
+                  <button
+                    className="py-1 px-4 border border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
+                    onClick={() => setRegisterOpen(true)}
+                  >
+                    REGISTER
+                  </button>
+                </>
               )}
               {isAuth && (
                 <button
@@ -160,26 +168,28 @@ const Header = () => {
                   KSH. {userData.account.balance.toLocaleString()}
                 </button>
               )}
-              <button
-                className="mobile-menu-button"
-                onClick={() => toggleMenu(true)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  style={{ color: "#ffff" }}
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              {!isAuth && (
+                <button
+                  className="mobile-menu-button"
+                  onClick={() => toggleMenu(true)}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    style={{ color: "#ffff" }}
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -189,7 +199,7 @@ const Header = () => {
             {isAuth && (
               <>
                 <button
-                  className="hidden py-1 px-4 border-b-2 border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
+                  className="py-1 px-4 border-b-2 border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
                   onClick={() => setWalletOpen(true)}
                 >
                   WALLET
@@ -228,23 +238,6 @@ const Header = () => {
                     <path d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z"></path>
                     <path d="M11 2h2v10h-2z"></path>
                   </svg>
-                </button>
-              </>
-            )}
-
-            {!isAuth && (
-              <>
-                <button
-                  onClick={() => setLoginOpen(true)}
-                  className="py-1 px-4 border border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
-                >
-                  LOGIN
-                </button>
-                <button
-                  className="py-1 px-4 border border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
-                  onClick={() => setRegisterOpen(true)}
-                >
-                  REGISTER
                 </button>
               </>
             )}

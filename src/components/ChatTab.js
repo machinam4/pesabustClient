@@ -5,17 +5,22 @@ import Moment from "moment";
 import { useState, useEffect } from "react";
 import { socket } from "../context/socket";
 import { useSelector } from "react-redux";
+import { useRef } from "react";
 
 const ChatTab = () => {
   const [Message, setMessage] = useState("");
+  const bottomRef = useRef(null);
   const isAuth = useSelector((state) => state.auth.isAuth);
   const [sendMessage] = useMutation(USER_CHAT);
+  const { loading, error, data, refetch } = useQuery(GET_CHATS);
   useEffect(() => {
     socket.on("chat_send", (data) => {
       refetch();
     });
-  });
-  const { loading, error, data, refetch } = useQuery(GET_CHATS);
+    console.log("wqiwoq");
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [refetch, data]);
+
   if (loading) return <LoadingSpinner />;
   if (error)
     return <p className="text-center text-red-200">Error : {error.message}</p>;
@@ -36,7 +41,7 @@ const ChatTab = () => {
   return (
     <div>
       <div className="w-full flex flex-col h-64 overflow-hidden" id="chat">
-        <div className="messages flex-1 overflow-y-scroll border-box px-1 md:px-4 scroll-auto">
+        <div className="messages flex-1 overflow-y-scroll border-box px-1 md:px-4">
           {data.chats
             .slice(0)
             .reverse()
@@ -50,6 +55,7 @@ const ChatTab = () => {
                 <span className="text-white">{message}</span>
               </p>
             ))}
+          <div ref={bottomRef} />
         </div>
         <form onSubmit={handleSubmit}>
           <div className="flex flex-row rounded">
