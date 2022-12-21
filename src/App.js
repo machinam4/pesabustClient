@@ -24,7 +24,6 @@ function App() {
       dispatch(updateBets(data.bets));
     }
   }, [dispatch, data]);
-
   if (loading) return <LoadingSpinner />;
   if (error)
     return <p className="text-center text-red-200">Error : {error.message}</p>;
@@ -45,12 +44,12 @@ function App() {
                 <ActionArea />
               </div>
             </div>
-            <div className="border-2 border-midnight rounded-md p-4 bg-purple-dark">
+            <div className="border-2 border-midnight rounded-md md:p-4 bg-purple-dark">
               <TabArea />
             </div>
           </div>
         </div>
-        <div className="border-2 border-midnight rounded-md pb-0">
+        <div className="hidden md:flex border-2 border-midnight rounded-md pb-0">
           <PlayersRight />
         </div>
       </div>

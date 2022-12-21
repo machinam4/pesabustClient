@@ -44,8 +44,9 @@ const PhoneInput = ({ onClose }) => {
       variables: {
         phoneNumber: PhoneNumber,
       },
-    }).then(() => {
+    }).then((data) => {
       setStep("codeInput");
+      return toast.success(data.message);
     });
   };
 
@@ -56,8 +57,9 @@ const PhoneInput = ({ onClose }) => {
         phoneNumber: PhoneNumber,
         code: OTP,
       },
-    }).then(() => {
+    }).then((data) => {
       setStep("passwordChange");
+      return toast.success(data.message);
     });
   };
 
@@ -72,9 +74,9 @@ const PhoneInput = ({ onClose }) => {
         phoneNumber: PhoneNumber,
         password: Password,
       },
-    }).then(() => {
-      toast.success("Password  Changed Succesful");
-      onClose();
+    }).then((data) => {
+      toast.success(data.message);
+      return onClose();
     });
   };
   // const renderLoading = () => {

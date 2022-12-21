@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setisBet } from "../features/authSlice";
+import { setisBet, setinBet } from "../features/authSlice";
 
 const PlayersRight = () => {
   const OnlineUsers = useSelector((state) => state.auth.onlineUsers);
@@ -14,6 +14,7 @@ const PlayersRight = () => {
   const checkbet = (user) => {
     if (AuthUser._id === user._id) {
       dispatch(setisBet(true));
+      dispatch(setinBet(true));
     } else {
       dispatch(setisBet(false));
     }

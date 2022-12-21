@@ -7,6 +7,7 @@ export const authSlice = createSlice({
     user: {},
     bets: [],
     isBet: false,
+    inBet: false,
     counter: 0,
     bustRate: [],
     bustStatus: "loading",
@@ -32,6 +33,9 @@ export const authSlice = createSlice({
     setisBet: (state, action) => {
       state.isBet = action.payload;
     },
+    setinBet: (state, action) => {
+      state.inBet = action.payload;
+    },
     setCounter: (state, action) => {
       state.counter = action.payload;
     },
@@ -53,6 +57,7 @@ export const {
   updateUser,
   updateBets,
   setisBet,
+  setinBet,
   setCounter,
   setOnlineUsers,
   setBustStatus,

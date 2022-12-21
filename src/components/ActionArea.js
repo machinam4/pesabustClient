@@ -26,11 +26,14 @@ const ActionArea = () => {
       return toast.error(`Login First`);
     }
     if (
-      BetAmount <= 11 ||
+      BetAmount <= 9 ||
       BetAmount >= accountBalance ||
       BetAmount >= maximumBet
     ) {
       return toast.error(`Invalid Bet Amount - ${BetAmount}`);
+    }
+    if (BetAmount <= 1) {
+      return toast.error(`Multiplier should be greater than 1`);
     }
 
     socket.emit(
@@ -67,7 +70,7 @@ const ActionArea = () => {
                 id="amount"
                 className="block w-full rounded-md border-gray-300 pl-14 focus:border-orange focus:ring-orange text-lg"
                 placeholder={10}
-                min={11}
+                min={9}
                 required
               />
             </div>

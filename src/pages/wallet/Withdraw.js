@@ -1,17 +1,28 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { socket } from "../../context/socket";
 
 const Withdraw = () => {
   const [Amount, setAmount] = useState("");
   const Balance = useSelector((state) => state.auth.user.account.balance);
 
-  const handleSubmit = (e) => {
+  const handleWithraw = async (e) => {
     e.preventDefault();
-    console.log(Amount);
-    if (Amount >= Balance || Amount < 50) {
-      toast.error("Invalid Amount");
+    if (Amount < 50) {
+      return toast.error("Minimum withdraw Amount is Kshs. 50");
     }
+    if (Amount >= Balance) {
+      return toast.error("Invalid Amount");
+    }
+    const withdrawAmount = Amount - (0.2 * Amount + 20);
+    socket.emit(
+      "transaction_withdraw",
+      { amount: Number(withdrawAmount) },
+      (response) => {
+        return toast(response.message, { type: response.status });
+      }
+    );
   };
   return (
     <div className=" m-4">
@@ -24,7 +35,7 @@ const Withdraw = () => {
         Tax. In compliance with the law, Pakakumi will deduct and remit to KRA
         20% of all winnings.
       </div>
-      <form className="m-4" onSubmit={handleSubmit}>
+      <form className="m-4" onSubmit={handleWithraw}>
         <label
           htmlFor="withdraw"
           className="block text-sm font-medium text-white"
@@ -55,10 +66,10 @@ const Withdraw = () => {
                 <td className="pl-3">Withdraw Amount</td>
                 <td>{Amount.toLocaleString()}</td>
               </tr>
-              <tr className="border-b border-midnight">
+              {/* <tr className="border-b border-midnight">
                 <td className="pl-3">Withholding Tax</td>
                 <td>{-0.2 * Amount}</td>
-              </tr>
+              </tr> */}
               <tr className="border-b border-midnight">
                 <td className="pl-3">Withdraw Fee</td>
                 <td>-{20}</td>
@@ -66,7 +77,8 @@ const Withdraw = () => {
               <tr className="border-b border-midnight">
                 <td className="pl-3">Disbursed Amount</td>
                 <td className="text-red">
-                  {(Amount - (0.2 * Amount + 20)).toLocaleString()}
+                  {(Amount - (Amount + 20)).toLocaleString()}
+                  {/*removed tax of o.2* amount*/}
                 </td>
               </tr>
             </tbody>

@@ -30,22 +30,25 @@ const Header = () => {
       <nav className="bg-midnight">
         <div className="px-2 mx-2">
           <div className="flex justify-between">
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 justify-center">
               {/* <!-- logo --> */}
               <div className="">
                 <img
                   src={logo}
                   alt={process.env.REACT_APP_NAME}
-                  height="20"
-                  className="h-20 inline-block"
+                  height=""
+                  className="h-14 md:h-20 inline-block"
                 />
                 {/* <span> */}
-                <a href="tel:0793003346" className="inline-block items-center">
+                <a
+                  href="tel:0793003346"
+                  className="inline-block items-center align-middle rotate-180 ml-10"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="48"
-                    height="48"
-                    // className="mt-4"
+                    // width="48"
+                    // height="48"
+                    className="h-10 md:h-14 animate-bounce"
                     viewBox="0 0 24 24"
                     style={{
                       fill: "rgba(6, 255, 0, 1)",
@@ -57,22 +60,13 @@ const Header = () => {
                   </svg>
                 </a>
                 {/* </span> */}
-                {/* <a
-                  href="/"
-                  className="flex items-center py-3 text-yellow hover:text-orange"
-                >
-                  <span className="font-mono font-bold text-5xl">
-                    {" "}
-                    VUTAPESA
-                  </span>
-                </a> */}
               </div>
 
               {/* <!-- deposit button --> */}
               {isAuth && (
                 <div className="hidden md:flex flex items-center space-x-1">
                   <button
-                    className="py-2 px-3 bg-purple hover:bg-purple text-yellow hover:text-orange rounded transition duration-300"
+                    className="py-2 px-3 bg-yellow hover:bg-orange text-purple-dark hover:text-white rounded transition duration-300"
                     onClick={() => setWalletOpen(true)}
                   >
                     DEPOSIT

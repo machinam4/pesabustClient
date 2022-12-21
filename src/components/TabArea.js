@@ -5,7 +5,7 @@ import PlayersTab from "./PlayersTab";
 
 const TabArea = () => {
   return (
-    <div className="w-full px-2 sm:px-0">
+    <div className="w-full md:px-2 sm:px-0">
       <Tab.Group vertical>
         <Tab.List className="grid grid-cols-3 space-x-1 bg-midnight pt-1 px-1 text-white">
           <Tab

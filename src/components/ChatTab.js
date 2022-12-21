@@ -36,13 +36,16 @@ const ChatTab = () => {
   return (
     <div>
       <div className="w-full flex flex-col h-64 overflow-hidden" id="chat">
-        <div className="messages flex-1 overflow-y-scroll border-box px-4 scroll-auto">
+        <div className="messages flex-1 overflow-y-scroll border-box px-1 md:px-4 scroll-auto">
           {data.chats
             .slice(0)
             .reverse()
             .map(({ _id, message, createdAt, user }) => (
-              <p key={_id} className="message-content text-yellow text-sm">
-                {Moment(createdAt).format("LT")}{" "}
+              <p
+                key={_id}
+                className="message-content text-yellow text-xs md:text-sm"
+              >
+                {Moment(createdAt).format("HH:mm")}{" "}
                 <span className="text-orange"> {user.username} : </span>
                 <span className="text-white">{message}</span>
               </p>

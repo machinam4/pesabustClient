@@ -4,6 +4,7 @@ import {
   setBustRate,
   setBustStatus,
   setCounter,
+  setinBet,
   setisBet,
   setOnlineUsers,
   updateBets,
@@ -22,6 +23,7 @@ socket.on("users_online", (data) => {
 });
 
 socket.on("game_wait", (data) => {
+  store.dispatch(setinBet(false));
   store.dispatch(setBustStatus("wait"));
   store.dispatch(setCounter(data));
 });
