@@ -120,10 +120,14 @@ const PhoneInput = ({ onClose }) => {
                 type="text"
                 name="phone"
                 value={PhoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                onChange={(e) =>
+                  setPhoneNumber(
+                    e.target.value.replace(/^0+/, "254").replace("+", "")
+                  )
+                }
                 id="phone"
                 className="block w-full rounded-md border-white focus:border-purple-dark focus:ring-purple-dark text-lg"
-                placeholder="e.g, +254712XXXXXX"
+                placeholder="e.g, 254712XXXXXX"
               />
             </div>
           </div>

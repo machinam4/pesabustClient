@@ -136,7 +136,7 @@ const Header = () => {
                     className="py-1 px-4 border border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
                     onClick={() => setRegisterOpen(true)}
                   >
-                    REGISTER
+                    SIGNUP
                   </button>
                 </>
               )}
@@ -148,12 +148,12 @@ const Header = () => {
                 <>
                   <button
                     onClick={() => setLoginOpen(true)}
-                    className="py-1 px-1 border border-purple m-2 rounded-md text-sm hover:bg-purple text-yellow hover:text-orange transition duration-300"
+                    className="py-1 px-1 border border-purple m-2 rounded-md text-xs hover:bg-purple text-yellow hover:text-orange transition duration-300"
                   >
                     LOGIN
                   </button>
                   <button
-                    className="py-1 px-4 border border-purple m-2 rounded-md   hover:bg-purple text-yellow hover:text-orange transition duration-300"
+                    className="py-1 px-1 border border-purple m-2 rounded-md text-xs hover:bg-purple text-yellow hover:text-orange transition duration-300"
                     onClick={() => setRegisterOpen(true)}
                   >
                     REGISTER

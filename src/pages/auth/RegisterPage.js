@@ -73,7 +73,11 @@ const RegisterPage = ({ onClose, socket }) => {
             <input
               type="text"
               value={PhoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={(e) =>
+                setPhoneNumber(
+                  e.target.value.replace(/^0+/, "254").replace("+", "")
+                )
+              }
               id="phone"
               className="block w-full rounded-md border-gray-300 focus:border-purple-500 focus:ring-purple-500 text-lg"
               placeholder="e.g, 254712XXXXXX"

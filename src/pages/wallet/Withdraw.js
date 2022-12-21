@@ -50,7 +50,7 @@ const Withdraw = () => {
             onChange={(e) => setAmount(e.target.value)}
             id="withdraw"
             className="block w-full rounded-md border-white focus:border-purple-dark focus:ring-purple-dark text-lg"
-            min="50"
+            min="49"
           />
         </div>
 
