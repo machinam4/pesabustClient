@@ -77,7 +77,7 @@ const Withdraw = () => {
               <tr className="border-b border-midnight">
                 <td className="pl-3">Disbursed Amount</td>
                 <td className="text-red">
-                  {(Amount - (Amount + 20)).toLocaleString()}
+                  {(Amount - 20).toLocaleString()}
                   {/*removed tax of o.2* amount*/}
                 </td>
               </tr>
