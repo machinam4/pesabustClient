@@ -2,8 +2,20 @@ import { Tab } from "@headlessui/react";
 import Deposit from "./Deposit";
 import History from "./History";
 import Withdraw from "./Withdraw";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { socket } from "../../context/socket";
+import { authenticate, updateUser } from "../../features/authSlice";
 
 const Wallet = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("wallet fetching");
+    socket.emit("user_login", (data) => {
+      dispatch(updateUser(data.user));
+      dispatch(authenticate(data.isAuth));
+    });
+  });
   return (
     <div className="w-full pt-10 px-2 sm:px-0">
       <Tab.Group vertical>
