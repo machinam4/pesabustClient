@@ -21,6 +21,9 @@ const Deposit = () => {
       }
     );
   };
+  const handlePending = async (e) => {
+    e.preventDefault();
+  };
 
   const [IsExpress, setIsExpress] = useState(true);
   return (
@@ -68,6 +71,7 @@ const Deposit = () => {
                 id="deposit"
                 className="block w-full rounded-md border-purple-light focus:border-purple-500 focus:ring-purple-500 text-lg"
                 min={20}
+                required
               />
             </div>
           </div>
@@ -114,7 +118,7 @@ const Deposit = () => {
         the mpesa transaction code in the form below and press Verify.
         <hr className="m-2" />
         For assistance, contact us on{" "}
-        <span className="text-orange font-bold">0743999333</span>
+        <span className="text-orange font-bold">0793003346</span>
       </div>
       <div className="border-2 border-white  m-4 rounded-md p-4">
         <h1 className="font-bold my-2 text-2xl text-white">
@@ -125,7 +129,7 @@ const Deposit = () => {
           to use this step. ONLY use this if your deposit is delayed for more
           than a minute.
         </p>
-        <form className="mt-4">
+        <form className="mt-4" onSubmit={handlePending}>
           <label
             htmlFor="referenceNO"
             className="block text-sm font-medium text-white"
@@ -141,6 +145,7 @@ const Deposit = () => {
               id="referenceNO"
               className="block w-full rounded-md border-purple-light focus:border-purple-dark focus:ring-purple-dark text-lg"
               placeholder="e.g, OLBX10BTY"
+              required
             />
           </div>
           {/* submit button */}
