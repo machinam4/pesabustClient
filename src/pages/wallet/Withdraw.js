@@ -15,7 +15,7 @@ const Withdraw = () => {
     if (Amount >= Balance) {
       return toast.error("Invalid Amount");
     }
-    const withdrawAmount = Amount - (0.2 * Amount + 20);
+    const withdrawAmount = Amount - 20;
     socket.emit(
       "transaction_withdraw",
       { amount: Number(withdrawAmount) },
